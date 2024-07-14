@@ -1,0 +1,39 @@
+.slide {
+  width: 100vw;
+  height: 88vh;
+}
+
+.slide-img {
+  width: 100%;
+  min-height: 88vh;
+  object-fit: contain;
+}
+
+.slide-content {
+  position: absolute;
+  top: 8vh;
+  left: 0;
+  width: 100%;
+  height: 56vh;
+  justify-content: space-evenly;
+  font-size: small;
+  padding: 2vw;
+}
+
+.slide-title {
+  font-family: "HeadingFont";
+  color: rgb(255, 255, 255);
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  opacity: 0;
+  animation-delay: 0.2s;
+}
+
+.slide-subtitle {
+  animation-delay: 0;
+}
+
+.btn-block {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
