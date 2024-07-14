@@ -48,7 +48,7 @@ export default function Slide({
         >
           <button
             type="button"
-            className="animate-txt bg-yellow-400 px-6 pb-2 pt-2.5 text-s font-medium uppercase leading-normal text-black hover:bg-yellow-300 hover:border-none"
+            className="animate-txt transition ease-in duration-300 bg-yellow-300 hover:bg-yellow-500"
             style={{ borderRadius: "0" }}
           >
             {btnTxt1}
@@ -56,7 +56,7 @@ export default function Slide({
           {btnTxt2 && (
             <button
               type="button"
-              className="animate-txt bg-yellow-400 px-6 pb-2 pt-2.5 text-s font-medium uppercase leading-normal hover:border-none text-black hover:bg-yellow-300  ml-2"
+              className="animate-txt transition duration-300 bg-yellow-300 hover:bg-yellow-500  ml-2"
               style={{ borderRadius: "0" }}
             >
               {btnTxt2}

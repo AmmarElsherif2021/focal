@@ -105,8 +105,8 @@ const Navbar = () => {
                         className="group relative text-gray-200 hover:text-gray-300"
                       >
                         {x.name}
-                        <span className="absolute -bottom-1 left-0 w-0 h-[0.7px] bg-blue-400 transition-all duration-100 group-hover:w-full  "></span>
-                        <span className="absolute -bottom-1 right-0 w-0 h-[0.7px] bg-blue-400 transition-all delay-200 duration-300 group-hover:w-full "></span>
+                        <span className="absolute -bottom-1 left-0 w-0 h-[0.7px] bg-white transition-all duration-100 group-hover:w-full "></span>
+                        <span className="absolute -bottom-1 right-0 w-0 h-[0.7px] bg-white  transition-all delay-100 duration-200 group-hover:w-full "></span>
                       </a>
                     </li>
                   );
