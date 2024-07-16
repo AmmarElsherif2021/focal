@@ -4,20 +4,16 @@ export default function NavIcons() {
   let iconsDivStyle = {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
-    maxWidth: "10vw",
-    marginRight: "1vw",
+    justifyContent: "right",
+    marginRight: 0,
   };
 
   let iconStyle = {
-    marginRight: 0,
+    marginLeft: "1.5vw",
     padding: 0,
   };
   return (
-    <div
-      style={iconsDivStyle}
-      className="lg:flex items-center space-x-5 ml-auto w-22"
-    >
+    <div style={iconsDivStyle} className="lg: relative">
       {/*email icon */}
       <a
         className="hidden  lg:flex  mr-1 items-center hover:text-gray-200  "

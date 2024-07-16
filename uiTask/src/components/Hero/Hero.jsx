@@ -24,7 +24,9 @@ export default function Hero() {
       index: 0,
       title: "THE HERITAGE COLLECTION",
       subTitle: "PREMIUM COLLECTION",
-      imgSrc: pic1,
+      imgSrc: [
+        "https://focal-theme-carbon.myshopify.com/cdn/shop/files/heritage-lp-3.jpg?v=1630492874&width=1400",
+      ],
       btnTxt1: "SHOP",
       btnTxt2: "LEARN MORE",
       textAlign: "left",
@@ -34,7 +36,10 @@ export default function Hero() {
       index: 1,
       title: "SAGE COLLECTION",
       subTitle: "MEET THE",
-      imgSrc: pic2,
+      imgSrc: [
+        "https://focal-theme-carbon.myshopify.com/cdn/shop/files/sage1-desktop.jpg?v=1630492840&width=700",
+        "https://focal-theme-carbon.myshopify.com/cdn/shop/files/sage2-desktop.jpg?v=1630492847&width=700",
+      ],
       btnTxt1: "LEARN MORE",
       btnTxt2: "",
       textAlign: "center",
@@ -44,7 +49,9 @@ export default function Hero() {
       index: 2,
       title: "NATIVE UNION TOM X DIXON",
       subTitle: "COLLABORATION",
-      imgSrc: pic3,
+      imgSrc: [
+        "https://focal-theme-carbon.myshopify.com/cdn/shop/files/tom-dixon-lp-tile-1.jpg?v=1630492908&width=1400",
+      ],
       btnTxt1: "LEARN MORE",
       btnTxt2: "",
       textAlign: "left",
@@ -54,7 +61,9 @@ export default function Hero() {
       index: 3,
       title: "TIHE MAISON KITSUNE' COLLLAB",
       subTitle: "NEW IN",
-      imgSrc: pic4,
+      imgSrc: [
+        "https://focal-theme-carbon.myshopify.com/cdn/shop/files/mk-lp-tile-1.jpg?v=1630493139&width=1400",
+      ],
       btnTxt1: "LEARN MORE",
       btnTxt2: "",
       textAlign: "left",
@@ -64,7 +73,7 @@ export default function Hero() {
   const activeSlideIndexRef = useRef(0); // Use a ref for active index
 
   const handleSlideChange = (swiper) => {
-    activeSlideIndexRef.current = swiper.activeIndex; // Update ref on slide change
+    activeSlideIndexRef.current = swiper.activeIndex;
   };
 
   useEffect(() => {
@@ -78,7 +87,6 @@ export default function Hero() {
 
   return (
     <div className="hero">
-      <h1>{activeSlideIndexRef.current}</h1> {/* Display active index */}
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
@@ -88,10 +96,21 @@ export default function Hero() {
         }}
         pagination={{
           clickable: true,
+          //el: ".swiper-pagination",
+          type: "bullets",
         }}
         navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
+        style={{
+          "--swiper-pagination-color": "#ffffff",
+          "--swiper-pagination-bullet-inactive-color": "#999999",
+          "--swiper-pagination-bullet-inactive-opacity": "1",
+          "--swiper-pagination-bullet-width": "80px",
+          "--swiper-pagination-bullet-height": "2px",
+          "--swiper-pagination-bullet-border-radius": "0",
+          "--swiper-pagination-bullet-horizontal-gap": "6px",
+        }}
         onSlideChange={(swiper) => {
           handleSlideChange(swiper);
           setSlides((prevSlides) =>
@@ -103,7 +122,7 @@ export default function Hero() {
         }}
       >
         {slides.map((x) => (
-          <SwiperSlide key={x.index}>
+          <SwiperSlide>
             <Slide
               title={x.title}
               subTitle={x.subTitle}

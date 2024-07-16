@@ -1,23 +1,34 @@
 .slide {
   width: 100vw;
-  height: 88vh;
+  height: 100vh;
 }
 
-.slide-img {
-  width: 100%;
-  min-height: 88vh;
-  object-fit: contain;
-}
-
-.slide-content {
+.slide-imgs {
   position: absolute;
-  top: 8vh;
   left: 0;
-  width: 100%;
-  height: 56vh;
+  top: 0;
+  width: 100vw;
+  min-width: 60em;
+  height: 100%;
+  object-fit: contain;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 0;
+  z-index: -1000;
+}
+.slide-img {
+  min-width: min-content;
+  height: auto;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 2));
+}
+.slide-content {
+  position: relative;
+  top: 15%;
+
   justify-content: space-evenly;
   font-size: small;
-  padding: 2vw;
 }
 
 .slide-title {
@@ -31,9 +42,48 @@
 
 .slide-subtitle {
   animation-delay: 0;
+  color: white;
 }
 
 .btn-block {
   animation-delay: 0.4s;
   opacity: 0;
+}
+
+.slide-btn {
+  width: 170px;
+  background-color: #f2ff3b;
+  border-style: solid;
+  border-color: black;
+  color: black;
+  font-weight: 900;
+  padding: 20px;
+  background-size: 200% 200%;
+  background-image: linear-gradient(to top, #e5f412 50%, transparent 50%);
+  -webkit-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  -moz-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  -ms-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  -o-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+}
+
+.slide-btn:hover {
+  border-color: #e5f412;
+  background-image: linear-gradient(to top, #e5f412 51%, transparent 50%);
+  background-position: 0 100%;
+  -webkit-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  -moz-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  -ms-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  -o-transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
+  transition: background-position 300ms, color 300ms ease,
+    border-color 300ms ease;
 }

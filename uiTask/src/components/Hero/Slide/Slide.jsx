@@ -6,7 +6,6 @@ import React from "react";
 //Framer motion
 
 export default function Slide({
-  index,
   title,
   subTitle,
   imgSrc,
@@ -17,9 +16,26 @@ export default function Slide({
 }) {
   return (
     <div className="slide">
-      <img src={imgSrc} className="slide-img" />
+      <div className="slide-imgs">
+        {imgSrc.map((x) => (
+          <img
+            className="slide-img"
+            style={{ minWidth: imgSrc.length > 1 ? "50%" : "100%" }}
+            src={x}
+          />
+        ))}
+      </div>
 
-      <div className="slide-content" style={{ textAlign: textAlign }}>
+      <div
+        className={
+          textAlign == "left"
+            ? "slide-content ml-[3vw]"
+            : "slide-content items-center px-0 lg:ml-[4vw] md:ml-[10%] mr-auto w-[80%]  sm:ml-[5%] pl-[10px] mr-auto w-[90%]"
+        }
+        style={{
+          textAlign: textAlign,
+        }}
+      >
         <p
           className={
             isActive
@@ -32,8 +48,8 @@ export default function Slide({
         <h4
           className={
             isActive
-              ? "animate-txt1  albert-sans-titlefont slide-title"
-              : "albert-sans-titlefont slide-title"
+              ? "animate-txt1 albert-sans-titlefont slide-title text-4xl lg:text-6xl"
+              : "albert-sans-titlefont slide-title lg:text-[5em] md:text-[4em]"
           }
         >
           {title}
@@ -48,16 +64,14 @@ export default function Slide({
         >
           <button
             type="button"
-            className="animate-txt transition ease-in duration-300 bg-yellow-300 hover:bg-yellow-500"
-            style={{ borderRadius: "0" }}
+            className="animate-txt subtitle-font slide-btn transition duration-300 bg-btn-color-p-300 hover:bg-btn-color-s-300  ml-2"
           >
             {btnTxt1}
           </button>
           {btnTxt2 && (
             <button
               type="button"
-              className="animate-txt transition duration-300 bg-yellow-300 hover:bg-yellow-500  ml-2"
-              style={{ borderRadius: "0" }}
+              className="animate-txt subtitle-font slide-btn transition duration-300 bg-btn-color-p-300 hover:bg-btn-color-s-300  ml-2"
             >
               {btnTxt2}
             </button>

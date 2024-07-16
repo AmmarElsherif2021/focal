@@ -1,12 +1,15 @@
+import "./Dropdown.css";
 import React from "react";
-export default function LinkDrop(props) {
-  const { linkName } = props;
+export default function Dropdown({ linkName }) {
   return (
     <div
-      data-twe-collapse-item
-      data-twe-collapse-horizontal
       id="collapsable"
-      style={{ background: "#ffffff", zIndex: "10000" }}
+      style={{
+        position: "fixed",
+        top: "12vh",
+        background: "#ffffff",
+        zIndex: "10000",
+      }}
     >
       <div>
         <h1>{linkName}</h1>

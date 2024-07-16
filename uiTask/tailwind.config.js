@@ -25,10 +25,10 @@ export default {
             transform: "translateY(5px)",
             opacity: 1,
           },
-          "100%": {
-            transform: "translateY(0)",
-            opacity: 1,
-          },
+        },
+        colors: {
+          "btn-color-p": "#f3ff33",
+          "btn-color-s": "#dee92b",
         },
       },
     },
