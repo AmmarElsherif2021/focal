@@ -3,20 +3,26 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Dropdown from "./Dropdown/Dropdown";
 import "./Nav.css";
-// Initialization for ES Users
-import { Collapse, initTWE } from "tw-elements";
+//link and dropdown
+import { AnimatePresence, motion } from "framer-motion";
+
+import { TECollapse, TERipple } from "tw-elements-react";
+//nav icons
 import NavIcons from "./NavIcons";
-import useWindowDimensions from "../../windowContext";
 
-import toggleLogo from "../../assets/react.svg";
+//Asidefor screen <=md
+import Aside from "./Aside/Aside";
 
-initTWE({ Collapse });
 const Navbar = () => {
   //link pressed state
   const [linkId, setLinkId] = useState("");
+
   //handle collapsable drop
-  const handleLinkHover = (e) => {
-    setLinkId(e.target.key);
+  const setDropLink = (id) => {
+    setLinkId(id);
+  };
+  const unsetDropLink = () => {
+    setLinkId("");
   };
 
   //assure linkId state mutation
@@ -30,29 +36,88 @@ const Navbar = () => {
     { id: "4", name: "Blog" },
   ];
 
-  const { width, height } = useWindowDimensions();
-  const [toggled, setToggeled] = useState(false);
+  //Aside toggle action
+  const [isToggled, setToggle] = useState(false);
+  useEffect(() => console.log("toggled"), [isToggled]);
+  const asideContainer = {
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { velocity: 100 },
+        duration: 0.3,
+      },
+    },
+    hidden: {
+      x: -250,
+      opacity: 0,
+      transition: {
+        x: { velocity: 100 },
+        duration: 0.3,
+      },
+    },
+  };
 
   return (
     <div className="absolute left-0 top-0 w-full pl-0 flex-column h-[200px]">
-      <nav className="absolute left-0 top-0 pl-0 flex-row text-white w-full">
+      {/*Aside nav */}
+      <AnimatePresence>
+        {isToggled && (
+          <motion.div
+            className="aside"
+            initial="hidden"
+            animate={isToggled ? "visible" : "hidden"}
+            exit="hidden"
+            variants={asideContainer}
+          >
+            <Aside />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <nav className="absolute left-0 top-0 px-4 flex-row text-white w-full">
         {/* left icons for screens <= md  */}
 
         <div className="left-icons lg:hidden flex basis-1/4">
-          <a className=" navbar-burger self-center lg:hidden mr-1 " href="#">
+          <a
+            onClick={() => setToggle(!isToggled)}
+            className=" navbar-burger self-center lg:hidden mr-1 "
+            href="#"
+          >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 hover:text-gray-200"
-              fill="none"
+              width="25px"
+              height="25px"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#ffffff"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path
+                  d="M4 18L20 18"
+                  stroke="#ffffff"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>{" "}
+                <path
+                  d="M4 12L20 12"
+                  stroke="#ffffff"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>{" "}
+                <path
+                  d="M4 6L20 6"
+                  stroke="#ffffff"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>{" "}
+              </g>
             </svg>
           </a>
 
@@ -102,21 +167,23 @@ const Navbar = () => {
 
         {/* Nav middle Links */}
         <ul
-          style={{ justifyContent: "center" }}
-          className="hidden lg:flex ml-0 font-semibold font-heading basis-1/2 "
+          style={{
+            justifyContent: "center",
+            height: "12vh",
+            alignItems: "center",
+          }}
+          className="hidden lg:flex ml-0 font-semibold font-heading basis-1/2  menu"
+          onMouseLeave={unsetDropLink}
         >
           {links.map((x) => (
-            <li key={x.id} style={{ fontSize: "0.9rem", fontWeight: "400" }}>
-              <a
-                href="#"
-                className="group relative text-white-800 mx-[25px] bg-orange h-[50px] w-[150px]"
-                onMouseEnter={() => setLinkId(x.id)}
-                onMouseLeave={() => setLinkId("")}
-              >
+            <li
+              className="li"
+              key={x.id}
+              onMouseEnter={() => setDropLink(x.id)}
+            >
+              <FlyoutLink href="#" FlyoutContent={PricingContent}>
                 {x.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[0.7px] bg-white transition-all duration-100 group-hover:w-full"></span>
-                <span className="absolute -bottom-1 right-0 w-0 h-[0.7px] bg-white transition-all delay-100 duration-200 group-hover:w-full"></span>
-              </a>
+              </FlyoutLink>
             </li>
           ))}
         </ul>
@@ -127,20 +194,95 @@ const Navbar = () => {
           <NavIcons />
         </div>
       </nav>
-      {linkId && <div></div>}
-      {linkId && (
-        <div className="dropdown-content ">
-          <Dropdown linkName={links.filter((x) => x.id == linkId)[0].name} />
-        </div>
-      )}
+    </div>
+  );
+};
+
+const FlyoutLink = ({ children, href, FlyoutContent }) => {
+  const [open, setOpen] = useState(false);
+
+  const showFlyout = FlyoutContent && open;
+
+  return (
+    <div
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      className="relative w-auto h-auto"
+      style={{
+        display: "inline",
+      }}
+    >
+      <a href={href} className="relative text-white">
+        {children}
+      </a>
+      <AnimatePresence>
+        {showFlyout && (
+          <motion.div
+            initial={{
+              position: "absolute",
+              opacity: 1,
+              left: "-50%",
+
+              scaleX: 0,
+            }}
+            animate={{
+              position: "absolute",
+              opacity: 1,
+              left: 0,
+
+              scaleX: 1,
+            }}
+            exit={{
+              position: "absolute",
+              opacity: 1,
+              right: 0,
+              translateX: "50%",
+              scaleX: 0,
+            }}
+            style={{ width: "100%" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="absolute left-0 top-3 w-[90%] text-black pl-2"
+          >
+            <div
+              style={{
+                minHeight: "1px",
+                background: "white",
+              }}
+            ></div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showFlyout && (
+          <motion.div
+            style={{
+              position: "fixed",
+              top: "12vh",
+              height: "auto",
+              left: 0,
+              width: "100%",
+              zIndex: "-1000",
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute left-0 top-3  text-black"
+            initial={{ opacity: 0, scaleY: 0, y: "-50%" }}
+            animate={{ opacity: 1, scaleY: 1, y: 0 }}
+            exit={{ opacity: 0, scaleY: 0, y: "-50%" }}
+          >
+            <FlyoutContent />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const PricingContent = () => {
+  return (
+    <div className="mt-0 left-0 w-[100vw] bg-white p-0 shadow-xl">
+      <Dropdown />
     </div>
   );
 };
 
 export default Navbar;
-/*
- 
-
-...........................
-
-*/

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply text-neutral-800;
+  }
+  html.dark {
+    @apply text-neutral-50;
+    @apply bg-neutral-800;
+  }
+}
 .subtitle-font {
   font-family: "Roboto", sans-serif;
   font-weight: 800;
@@ -44,7 +53,6 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
   line-height: 1.1;
 }
 

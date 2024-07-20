@@ -1,14 +1,6 @@
 /* styles.css */
 
 /* Reset default styles for lists and links */
-ul,
-li,
-a {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-}
 
 /* Navigation container */
 nav {
@@ -18,16 +10,23 @@ nav {
   padding-top: 2vh;
   top: 0;
   left: 0;
-  z-index: 10000;
+  z-index: 1000000;
   display: flex;
   background-color: #282828;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-
-  padding: 1rem;
 }
-
+.aside {
+  min-width: 70vw;
+  height: 100vh;
+  background: orange;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  padding-top: 15vh;
+}
 /* Logo style */
 .logo {
   font-size: 1.3rem;
@@ -49,37 +48,55 @@ nav {
   margin-right: 1rem;
   color: #fff; /* Set your desired icon color */
 }
-.underline-animation {
-  position: relative;
-  text-decoration: none;
-  color: white;
-  transition: width 500ms ease;
-}
 
-.underline-animation::before {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 500ms ease;
-}
-
-.underline-animation:hover::before {
-  width: 100%;
-}
-.underline-animation::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  right: 0;
-  width: 0;
-  height: 1px;
-  background-color: white;
-  transition: width 500ms ease;
-}
 .left-icons {
   min-width: 30%;
 }
+.li {
+  font-size: 0.1rem;
+  font-weight: 200;
+  height: 5vh;
+  align-items: center;
+  color: #fff;
+}
+.menu a {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 300;
+
+  transition: color 0.2s ease;
+  padding: 3px 0;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+/* .menu a:hover {
+  color: #aaa;
+}
+
+.menu a:hover::after,
+.menu a:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+.menu a::after,
+.menu a::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 5px);
+  width: 0;
+  right: 0;
+  height: 3px;
+}
+
+.menu a::before {
+  transition: width 0.4s cubic-bezier(0.51, 0.18, 0, 0.88) 0.1s;
+  background: #2196f3;
+}
+
+.menu a::after {
+  transition: width 0.2s cubic-bezier(0.29, 0.18, 0.26, 0.83);
+  background: #ffffff;
+} */

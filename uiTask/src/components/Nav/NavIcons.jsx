@@ -173,8 +173,8 @@ export default function NavIcons() {
           </g>
         </svg>
         <span className="flex absolute -mt-5 ml-4">
-          <span className="absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+          <span className="absolute inline-flex h-3 w-3 rounded-full bg-white-500 " />
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-white-500"></span>
         </span>
       </a>
     </div>
