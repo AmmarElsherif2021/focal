@@ -1,6 +1,8 @@
 # Focal UI Task
 Made for [Focal][l1]
+
 Demo URL: [GitHub Pages][l2]
+
 ## Tech
 🔵 React.js 🟣 Tailwind CSS 🟠 Swiper.js 🟢 Framer Motion js
 
